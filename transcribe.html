@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoxBridge | Transcribe</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <i class="fas fa-microphone-alt"></i> VoxBridge
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="transcribe.html" class="active">Transcribe</a>
+            <a href="history.html">History</a>
+            <button id="logoutBtn" class="logout-btn-light">Logout</button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        
+        <!-- Top Controls Bar -->
+        <div class="top-controls">
+            <div class="lang-selector">
+                <i class="fas fa-language" style="color:var(--accent-purple)"></i>
+                <select id="lang-select">
+                    <option value="hi-IN">Hindi</option>
+                    <option value="ta-IN">Tamil</option>
+                    <option value="te-IN">Telugu</option>
+                    <option value="bn-IN">Bengali</option>
+                    <option value="mr-IN">Marathi</option>
+                    <option value="gu-IN">Gujarati</option>
+                    <option value="pa-IN">Punjabi</option>
+                    <option value="ur-IN">Urdu</option>
+                </select>
+            </div>
+            
+            <div class="file-actions">
+                <button class="btn-secondary" id="save-btn"><i class="fas fa-save"></i> Save</button>
+                <button class="btn-secondary btn-outline" id="export-btn"><i class="fas fa-download"></i> Export</button>
+            </div>
+        </div>
+
+        <!-- Cards Area -->
+        <div class="cards-container">
+            
+            <!-- Left Card: Native Input -->
+            <div class="card card-input">
+                <div class="card-header">
+                    <h3>Native Input</h3>
+                    <span class="badge"><i class="fas fa-microphone" style="font-size: 0.8rem;"></i> Live</span>
+                </div>
+                <div class="card-body">
+                    <textarea id="inputText" class="clean-textarea text-muted placeholder-center" readonly placeholder="Click microphone to start"></textarea>
+                </div>
+                <div class="card-footer">
+                    <button id="mic-btn" class="big-mic-btn">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Card: English Output -->
+            <div class="card card-output">
+                <div class="card-header output-header">
+                    <h3>
+                        English Output 
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="auto-speak" checked> Auto-Speak
+                        </label>
+                    </h3>
+                    <button id="speak-btn" class="icon-btn"><i class="fas fa-volume-up"></i></button>
+                </div>
+                <div class="card-body">
+                    <textarea id="outputText" class="clean-textarea text-purple placeholder-center placeholder-purple" readonly placeholder="Translation will appear here"></textarea>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <!-- Hidden history list so existing JS doesn't break -->
+    <div id="historyList" style="display:none;"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

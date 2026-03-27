@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoxBridge | Dashboard</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-top: 10px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--accent-purple), #7e6ff8);
+            border-radius: 24px;
+            padding: 50px 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(91, 66, 243, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-banner::after {
+            content: '\f130';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -20px;
+            bottom: -50px;
+            font-size: 15rem;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 80%;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero-banner p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .btn-cta {
+            background: white;
+            color: var(--accent-purple);
+            border: none;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Right Column */
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .dashboard-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(91, 66, 243, 0.05);
+            border-color: var(--accent-purple-border);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .card-purple { background: var(--accent-purple-light); color: var(--accent-purple); }
+        .card-green { background: #e6fffa; color: #319795; }
+        .card-orange { background: #fffaf0; color: #dd6b20; }
+
+        .dashboard-card h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .dashboard-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        @media(max-width: 900px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-banner::after {
+                font-size: 10rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <i class="fas fa-microphone-alt"></i> VoxBridge
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Dashboard</a>
+            <a href="transcribe.html">Transcribe</a>
+            <a href="history.html">History</a>
+            <button id="logoutBtn" class="logout-btn-light">Logout</button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        
+        <div class="dashboard-grid">
+            <!-- Awesome Hero Banner -->
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h1>Bridge the Language Gap, <br>Instantly.</h1>
+                    <p>Experience seamless, real-time voice translation across 8 Indian languages. Speak naturally, and let VoxBridge handle the translation instantly with beautiful AI-powered clarity.</p>
+                    <a href="transcribe.html" style="text-decoration:none;">
+                        <button class="btn-cta">
+                            <i class="fas fa-microphone"></i> Start Transcribing Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Side Stats/Info Panels -->
+            <div class="side-panel">
+                
+                <div class="dashboard-card">
+                    <div class="card-icon card-purple">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div>
+                        <h3 id="stat-count">0</h3>
+                        <p>Total Translations</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon card-green">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div>
+                        <h3>8</h3>
+                        <p>Supported Languages</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon card-orange">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3>&lt; 1s</h3>
+                        <p>Translation Speed</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Hidden history list to calculate count -->
+    <div id="historyList" style="display:none;"></div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Update stats
+        setTimeout(() => {
+            const currentUser = localStorage.getItem("currentUser") || "guest";
+            let history = [];
+            try {
+                history = JSON.parse(localStorage.getItem("history_" + currentUser)) || [];
+            } catch (e) {
+                history = [];
+            }
+            document.getElementById("stat-count").innerText = history.length;
+        }, 300);
+    </script>
+</body>
+</html>

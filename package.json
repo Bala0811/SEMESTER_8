@@ -1,0 +1,11 @@
+{
+  "name": "voicebridge-app",
+  "version": "1.0.0",
+  "description": "VoiceBridge speech translation and transcription application",
+  "main": "script.js",
+  "scripts": {
+    "dev": "npx -y serve . -p 3000"
+  },
+  "author": "",
+  "license": "ISC"
+}
